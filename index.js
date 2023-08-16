@@ -23,47 +23,28 @@ const refrains = document.querySelectorAll('.refrain');
 const labelRefrains = checkboxRefrains.nextSibling;
 const definition = document.querySelectorAll('.definition');
 const contenu = document.querySelectorAll('.contenu');
-console.log(refrains);
 
+checkboxRefrains.addEventListener('click', function(event) {
+  for (let i = 1; i < refrains.length; i++) {
+    if (event.target.checked) {
+      contenu[i].classList.add('hidden');
+      definition[i].classList.remove('hidden');
+      labelRefrains.nodeValue = 'Afficher les refrains';
 
- checkboxRefrains.addEventListener('click', function() {
-  
-   if (checkboxRefrains.checked) {
-    for (let i = 1; i < refrains.length; i++) {
-      refrains[i].children[1].remove();
-      definition.forEach(element => {
-        element.classList.remove('hidden');
-        element.addEventListener('mouseenter', () => {
-          for (let i = 1; i < refrains.length; i++) {
-            refrains[i].append(contenu[i]);
-          }
-        });
-        element.addEventListener('mouseleave', () => {
-          refrains.forEach(element => {
-            element.classList.remove('hidden');
+      definition[i].addEventListener('mouseenter', () => {
+          contenu[i].classList.remove('hidden');
           });
-          for (let i = 1; i < refrains.length; i++) {
-            refrains[i].children[1].remove();
-            
-          }
-        })      
-      });
-    }
-    labelRefrains.nodeValue = 'Afficher les refrains';
-    hr.style.display = 'none';
-  }else {
-      
-      labelRefrains.nodeValue = 'Masquer les paroles';
-      hr.style.display = 'block';
-      for (let i = 0; i < refrains.length; i++) {
-        refrains[i].append(contenu[i]);
-        definition.forEach(element => {
-          element.classList.add('hidden');
+      definition[i].addEventListener('mouseleave', () => {
+        contenu[i].classList.add('hidden');
         });
-      }
-      
+    } else {
+      contenu[i].classList.remove('hidden');
+      definition[i].classList.add('hidden');
+      labelRefrains.nodeValue = 'Masquer les refrains';
     }
- });
+    
+  }
+})
 
  const paragraph = document.querySelectorAll('p');
  paragraph.forEach(element => {
