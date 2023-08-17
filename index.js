@@ -2,16 +2,16 @@
 const checkboxParoles = document.getElementById('masquer-paroles');
 const divParoles = document.getElementById('paroles');
 const labelParoles = checkboxParoles.nextSibling;
-const hr = document.body.children[3];
+const hr = document.querySelector('hr');
 
 checkboxParoles.addEventListener('click', function() {
   if (checkboxParoles.checked) {
     divParoles.style.display = 'none';
-    labelParoles.nodeValue = 'Afficher les paroles';
+    labelParoles.textContent = 'Afficher les paroles';
     hr.style.display = 'none';
   } else {
     divParoles.style.display = 'block';
-    labelParoles.nodeValue = 'Masquer les paroles';
+    labelParoles.textContent = 'Masquer les paroles';
     hr.style.display = 'block';
   }
 });
@@ -29,7 +29,7 @@ checkboxRefrains.addEventListener('click', function(event) {
     if (event.target.checked) {
       contenu[i].classList.add('hidden');
       definition[i].classList.remove('hidden');
-      labelRefrains.nodeValue = 'Afficher les refrains';
+      labelRefrains.textContent = 'Afficher les refrains';
 
       definition[i].addEventListener('mouseenter', () => {
           contenu[i].classList.remove('hidden');
@@ -40,13 +40,14 @@ checkboxRefrains.addEventListener('click', function(event) {
     } else {
       contenu[i].classList.remove('hidden');
       definition[i].classList.add('hidden');
-      labelRefrains.nodeValue = 'Masquer les refrains';
+      labelRefrains.textContent = 'Masquer les refrains';
     }
     
   }
 })
 
  const paragraph = document.querySelectorAll('p');
+ console.log(paragraph);
  paragraph.forEach(element => {
    element.setAttribute('style', 'margin: 0px');
  });
